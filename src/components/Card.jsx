@@ -26,7 +26,7 @@ function Card({ title, imageSrc, text }) {
 
   return (
     <div
-      className="relative bg-gray-50 group dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border border-black/[0.1] w-72 p-4 rounded-xl transition-transform transform duration-300"
+      className="relative  bg-gray-50 group dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border border-black/[0.1] w-[40%] p-4 rounded-xl transition-transform transform duration-300"
       style={{
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${isHovered ? 1.08 : 1})`,
         transition: "transform 0.2s ease-out",
@@ -36,13 +36,13 @@ function Card({ title, imageSrc, text }) {
       onMouseMove={handleMouseMove}
     >
       <div className="p-6">
-        <h3 className="text-center text-xl font-bold text-black dark:text-white">
+        <h3 className="text-center text-xl font-bold text-black dark:text-white group-hover:scale-110 transition-transform duration-300 ">
           {title}
         </h3>
         <img
           src={imageSrc}
           alt={title}
-          className="h-60 w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-300"
+          className="mt-8 h-60 w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-300"
         />
         <p className="mt-2 text-sm text-gray-700 dark:text-neutral-300">{text}</p>
       </div>
