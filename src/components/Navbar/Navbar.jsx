@@ -32,15 +32,15 @@ export default function Navbar() {
           onMouseLeave={() => setActive(null)}
           className="relative flex justify-center space-x-8 text-base font-medium text-neutral-700 dark:text-neutral-200"
         >
-          <Link to="/" className="hover:text-black dark:hover:text-white transition">Home</Link>
-          <Link to="/about" className="hover:text-black dark:hover:text-white transition">About Us</Link>
+          <Link to="/" className="hover:text-black dark:hover:text-white transition text-xl">Home</Link>
+          <Link to="/about" className="hover:text-black dark:hover:text-white transition text-xl">About Us</Link>
           {/* <Link to="/solareffect" className="hover:text-black dark:hover:text-white transition">Solar Effect</Link> */}
           
           {/* Products Dropdown */}
           <div className="relative" onMouseEnter={() => setActive("Products")} onMouseLeave={() => setActive(null)}>
             <motion.p
               transition={{ duration: 0.3 }}
-              className="cursor-pointer hover:text-black dark:hover:text-white transition"
+              className="cursor-pointer hover:text-black dark:hover:text-white transition text-xl"
             >
               Products
             </motion.p>
@@ -51,7 +51,7 @@ export default function Navbar() {
                 transition={transition}
                 className="absolute top-full left-1/2 transform -translate-x-1/2 bg-white dark:bg-black backdrop-blur-sm rounded-xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl w-48 mt-2"
               >
-                <div className="flex flex-col p-4 text-black dark:text-white text-sm">
+                <div className="flex flex-col p-4 text-black dark:text-white text-md">
                   <Link to="/solar-panels" className="hover:text-neutral-500">Solar Panels</Link>
                   <Link to="/batteries" className="hover:text-neutral-500">Batteries</Link>
                   <Link to="/inverters" className="hover:text-neutral-500">Inverters</Link>
@@ -60,7 +60,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/contact" className="hover:text-black dark:hover:text-white transition">Contact Us</Link>
+          <Link to="/contact" className="hover:text-black dark:hover:text-white transition text-xl">Contact Us</Link>
         </nav>
 
         {/* Right Side: Login Button with Hover Effect */}

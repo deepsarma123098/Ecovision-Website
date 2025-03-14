@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
+import { animateScroll as scroll } from "react-scroll";
 import ProfileCard from "../components/Cards/ProfileCard.jsx";
 import ServiceCard from "../components/Cards/ServiceCard.jsx";
 import Person1 from "../assets/Person1.jpg";
@@ -9,7 +11,13 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen py-12 px-6">
       {/* About Us Section */}
-      <div className="max-w-6xl mx-auto">
+      <motion.div
+        className="max-w-6xl mx-auto"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false }}
+      >
         <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
           About Us
         </h2>
@@ -25,10 +33,16 @@ const AboutUs = () => {
             imageUrl={Person2}
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* Services Section */}
-      <div className="mt-16 max-w-6xl mx-auto">
+      <motion.div
+        className="mt-16 max-w-6xl mx-auto"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false }}
+      >
         <ServiceCard title="How We Work">
           <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
             <ul className="list-disc pl-5 space-y-2 text-gray-800">
@@ -62,21 +76,21 @@ const AboutUs = () => {
             </ul>
           </div>
         </ServiceCard>
-      </div>
+      </motion.div>
 
       {/* Address Section */}
-      <div className="mt-16 flex flex-col items-center">
+      <motion.div
+        className="mt-16 flex flex-col items-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false }}
+      >
         <h3 className="text-3xl font-semibold text-center text-gray-800 mb-4">
           Our Address:
         </h3>
         <ThreeDPinCard />
-        {/* <PinContainer
-          title="Visit Us"
-          href="https://www.google.com/maps?q=26.102589,91.727576"
-        >
-          <p className="text-white">Click to view on Google Maps</p>
-        </PinContainer> */}
-      </div>
+      </motion.div>
     </div>
   );
 };

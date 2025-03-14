@@ -1,73 +1,192 @@
-import React from "react";
-
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 function SignupForm() {
+  const controls = useAnimation();
+  const formRef = useRef(null);
+
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    controls.start({ opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } });
+  }, [controls]);
+
+  // Function to validate input fields
+  const validateField = (name, value) => {
+    let error = "";
+    switch (name) {
+      case "firstname":
+        if (!value.trim()) error = "First Name is required";
+        else if (!/^[A-Za-z]+$/.test(value)) error = "Only alphabets allowed";
+        else if (value.length < 3) error = "At least 3 characters required";
+        break;
+
+      case "lastname":
+        if (!value.trim()) error = "Last Name is required";
+        else if (!/^[A-Za-z]+$/.test(value)) error = "Only alphabets allowed";
+        else if (value.length < 2) error = "At least 2 characters required";
+        break;
+
+      case "email":
+        if (!value.trim()) error = "Email is required";
+        else if (!/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value))
+          error = "Enter a valid email address";
+        break;
+
+      case "phone":
+        if (!value.trim()) error = "Phone Number is required";
+        else if (!/^\d+$/.test(value)) error = "Only numbers allowed";
+        else if (value.length !== 10) error = "Must be exactly 10 digits";
+        break;
+
+      default:
+        break;
+    }
+    return error;
+  };
+
+  // Handles input change and validation
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+    setErrors({ ...errors, [id]: validateField(id, value) });
+  };
+
+  // Handles form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    let newErrors = {};
+
+    Object.keys(formData).forEach((key) => {
+      newErrors[key] = validateField(key, formData[key]);
+    });
+
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).every((err) => err === "")) {
+      console.log("Form submitted successfully:", formData);
+      setErrors({});
+
+      // Smoothly scroll to the top of the form
+      formRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <div className="max-w-6xl w-full mx-auto rounded-lg p-6 shadow-lg bg-white">
-      <h2 className="font-bold text-xl text-gray-800">
-        Welcome to Ecovision
-      </h2>
-      <p className="text-gray-600 text-sm mt-2 ">
-        Register now to access exclusive features.
-      </p>
+    <motion.div
+      ref={formRef}
+      className="max-w-6xl w-full mx-auto rounded-lg p-6 shadow-lg bg-white"
+      initial={{ opacity: 0, y: 50 }}
+      animate={controls}
+    >
+      <h2 className="font-bold text-xl text-gray-800">Welcome to Ecovision</h2>
+      <p className="text-gray-600 text-sm mt-2">Register now to access exclusive features.</p>
 
-      <form className="my-6" onSubmit={handleSubmit} >
-        
-          <LabelInputContainer label="First Name" id="firstname" placeholder="John" type="text" />
-          <LabelInputContainer label="Last Name" id="lastname" placeholder="Doe" type="text" />
-      
+      <form className="my-6" onSubmit={handleSubmit}>
+        <LabelInputContainer
+          label="First Name"
+          id="firstname"
+          placeholder="John"
+          type="text"
+          required
+          value={formData.firstname}
+          onChange={handleChange}
+          error={errors.firstname}
+        />
+        <LabelInputContainer
+          label="Last Name"
+          id="lastname"
+          placeholder="Doe"
+          type="text"
+          required
+          value={formData.lastname}
+          onChange={handleChange}
+          error={errors.lastname}
+        />
+        <LabelInputContainer
+          label="Email Address"
+          id="email"
+          placeholder="johndoe@email.com"
+          type="email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+          error={errors.email}
+        />
+        <LabelInputContainer
+          label="Phone Number"
+          id="phone"
+          placeholder="Enter your 10-digit phone number"
+          type="tel"
+          required
+          value={formData.phone}
+          onChange={handleChange}
+          error={errors.phone}
+        />
 
-        <LabelInputContainer label="Email Address" id="email" placeholder="johndoe@email.com" type="email" className="mb-4" />
-        <LabelInputContainer label="Password" id="password" placeholder="••••••••" type="password" className="mb-4" />
-        <LabelInputContainer label="Confirm Password" id="confirmpassword" placeholder="••••••••" type="password" className="mb-6" />
+        {/* Message Box (Optional) */}
+        <LabelInputContainer
+          label="Message"
+          id="message"
+          placeholder="Write your message here..."
+          type="textarea"
+          value={formData.message}
+          onChange={handleChange}
+        />
 
         <button
-          className=" w-[10vw] bg-gradient-to-br from-gray-800 to-gray-600 text-white rounded-md h-10 font-medium shadow-md hover:opacity-80 transition relative left-[17vw] py-6"
+          className="w-[10vw] bg-gradient-to-br from-gray-800 to-gray-600 text-white rounded-md h-10 font-medium shadow-md hover:opacity-80 transition relative left-[17vw] py-6"
           type="submit"
         >
           Submit
         </button>
 
         <div className="my-6 h-px bg-gray-300 dark:bg-gray-700 w-full" />
-
-        {/* <div className="flex flex-col gap-3">
-          <SocialButton icon={<FaGithub />} text="Sign up with GitHub" />
-          <SocialButton icon={<FaGoogle />} text="Sign up with Google" />
-          <SocialButton icon={<FaUser />} text="Sign up as Guest" />
-        </div> */}
       </form>
-    </div>
+    </motion.div>
   );
 }
 
-const LabelInputContainer = ({ label, id, placeholder, type, className }) => {
+// Reusable input component with error handling
+const LabelInputContainer = ({ label, id, placeholder, type, required, value, onChange, error }) => {
   return (
-    <div className={`flex flex-col space-y-1 w-full ${className}`}>
-      <label htmlFor={id} className="text-sm font-semibold   text-gray-700">
-        {label}
+    <div className="flex flex-col space-y-1 w-full mb-4">
+      <label htmlFor={id} className="text-sm font-semibold text-gray-700">
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
-      <input
-        id={id}
-        placeholder={placeholder}
-        type={type}
-        className="w-full p-2 border border-black rounded-md focus:ring-2 focus:ring-gray-500 outline-none"
-        required
-      />
+      {type === "textarea" ? (
+        <textarea
+          id={id}
+          placeholder={placeholder}
+          className={`w-full p-2 border rounded-md focus:ring-2 outline-none ${
+            error ? "border-red-500 ring-red-300" : "border-black focus:ring-gray-500"
+          }`}
+          value={value}
+          onChange={onChange}
+        />
+      ) : (
+        <input
+          id={id}
+          placeholder={placeholder}
+          type={type}
+          className={`w-full p-2 border rounded-md focus:ring-2 outline-none ${
+            error ? "border-red-500 ring-red-300" : "border-black focus:ring-gray-500"
+          }`}
+          value={value}
+          onChange={onChange}
+          required={required}
+        />
+      )}
+      {error && <p className="text-red-500 text-xs">{error}</p>}
     </div>
-  );
-};
-
-const SocialButton = ({ icon, text }) => {
-  return (
-    <button className="flex items-center gap-2 px-4 py-2 w-full text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-      {icon}
-      <span className="text-sm">{text}</span>
-    </button>
   );
 };
 

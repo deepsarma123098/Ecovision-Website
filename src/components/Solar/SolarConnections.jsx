@@ -47,7 +47,7 @@ function SolarConnections() {
   return (
     <>
       {/* First Row: Solar Connection Types (Uses Card) */}
-      <div className="flex flex-wrap justify-center gap-12">
+      <div className="mt-12 flex flex-wrap justify-center gap-12">
         <Card title="On Grid Connection" imageSrc={gridTieImg} />
         <Card title="Off Grid Connection" imageSrc={offGridImg} />
         <Card title="Hybrid Connection" imageSrc={hybridImg} />
