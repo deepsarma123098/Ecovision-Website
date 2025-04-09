@@ -2,16 +2,23 @@
 
 
 /* Completely remove both horizontal and vertical scrollbars */
-html, body {
+*{
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+html, body {
+  padding: 0;
+  margin: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Completely disables scrolling */
+ 
+  
 }
 
 /* If you still want scrolling but no scrollbar */
 body {
+   
   overflow-y: scroll; /* Keeps scrolling */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Edge/IE */

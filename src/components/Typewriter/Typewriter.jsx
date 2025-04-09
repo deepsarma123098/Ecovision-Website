@@ -47,13 +47,13 @@ export const TypewriterEffect = ({ words = "", className = "", cursorClassName =
   );
 
   return (
-    <div className={`text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center ${className}`}>
+    <div className={`text-4xl sm:text-base md:text-xl lg:text-4xl xl:text-[9vw] font-bold text-center my-4 sm:my-6 md:my-8 ${className} w-[89%]`}>
       {renderWords()}
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className={`inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-blue-500 ${cursorClassName}`}
+        className={`inline-block rounded-sm w-[2px] h-4 sm:h-5 md:h-6 lg:h-8 xl:h-10 bg-blue-500 ${cursorClassName}`}
       ></motion.span>
     </div>
   );
@@ -80,14 +80,14 @@ export const TypewriterEffectSmooth = ({ words = "", className = "", cursorClass
   );
 
   return (
-    <div className={`flex space-x-1 my-6 ${className}`}>
+    <div className={`flex space-x-1 my-4 sm:my-6 md:my-8 ${className}`}>
       <motion.div
-        className="overflow-hidden pb-2"
+        className="overflow-hidden pb-1 sm:pb-2"
         initial={{ width: "0%" }}
         whileInView={{ width: "fit-content" }}
         transition={{ duration: 2, ease: "linear", delay: 1 }}
       >
-        <div className="text-xs sm:text-base md:text-xl lg:text-3xl xl:text-5xl font-bold" style={{ whiteSpace: "nowrap" }}>
+        <div className="text-sm sm:text-base md:text-xl lg:text-3xl xl:text-xl font-bold" style={{ whiteSpace: "nowrap" }}>
           {renderWords()}
         </div>
       </motion.div>
@@ -95,7 +95,7 @@ export const TypewriterEffectSmooth = ({ words = "", className = "", cursorClass
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className={`block rounded-sm w-[4px] h-4 sm:h-6 xl:h-12 bg-blue-500 ${cursorClassName}`}
+        className={`block rounded-sm w-[2px] h-4 sm:h-5 md:h-6 lg:h-8 xl:h-10 bg-blue-500 ${cursorClassName}`}
       ></motion.span>
     </div>
   );

@@ -2,12 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 
-export default function AddressCard() {
-  const googleMapsUrl = "https://maps.google.com/?q=Your+Location+Coordinates"; // Replace with actual coordinates
-
+const AddressCard = ({ title, address, googleMapsUrl }) => {
   return (
     <motion.div
-      className="relative bg-gray-900 text-white p-6 rounded-2xl shadow-lg border border-gray-700 w-80 md:w-96 cursor-pointer transition-transform transform hover:scale-95"
+      className="relative bg-gray-900 text-white p-6 rounded-2xl shadow-lg border border-gray-700 w-full max-w-sm md:max-w-md lg:max-w-lg cursor-pointer transition-transform transform hover:scale-95"
       whileHover={{ scale: 0.95 }}
       onClick={() => window.open(googleMapsUrl, "_blank")}
     >
@@ -18,11 +16,11 @@ export default function AddressCard() {
 
       {/* Address Content */}
       <div className="mt-6 text-center">
-        <h3 className="text-xl font-semibold">Our Location</h3>
-        <p className="text-gray-300 mt-2">
-          123 Solar Street, Green Energy City, Earth
-        </p>
+        <h3 className="text-xl font-semibold">{title}</h3>
+        <p className="text-gray-300 mt-2">{address}</p>
       </div>
     </motion.div>
   );
-}
+};
+
+export default AddressCard;

@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -50,7 +49,7 @@ export const Menu = ({ children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6"
+      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-6 py-4"
     >
       {React.Children.map(children, (child) =>
         React.cloneElement(child, { setActive, active })
@@ -64,14 +63,14 @@ export const ProductItem = ({ title, description, href, src }) => {
     <Link to={href} className="flex space-x-2">
       <img
         src={src}
-        width={140}
-        height={70}
+        width={120}
+        height={60}
         alt={title}
-        className="shrink-0 rounded-md shadow-2xl"
+        className="shrink-0 rounded-md shadow-lg"
       />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">{title}</h4>
-        <p className="text-gray-700 text-sm max-w-[10rem] dark:text-gray-300">
+        <h4 className="text-lg font-bold mb-1 text-black dark:text-white">{title}</h4>
+        <p className="text-gray-700 text-sm max-w-[9rem] dark:text-gray-300">
           {description}
         </p>
       </div>

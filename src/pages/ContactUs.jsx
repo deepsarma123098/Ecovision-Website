@@ -16,10 +16,13 @@ function SignupForm() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    controls.start({ opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } });
+    controls.start({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeOut" },
+    });
   }, [controls]);
 
-  // Function to validate input fields
   const validateField = (name, value) => {
     let error = "";
     switch (name) {
@@ -28,39 +31,33 @@ function SignupForm() {
         else if (!/^[A-Za-z]+$/.test(value)) error = "Only alphabets allowed";
         else if (value.length < 3) error = "At least 3 characters required";
         break;
-
       case "lastname":
         if (!value.trim()) error = "Last Name is required";
         else if (!/^[A-Za-z]+$/.test(value)) error = "Only alphabets allowed";
         else if (value.length < 2) error = "At least 2 characters required";
         break;
-
       case "email":
         if (!value.trim()) error = "Email is required";
         else if (!/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(value))
           error = "Enter a valid email address";
         break;
-
       case "phone":
         if (!value.trim()) error = "Phone Number is required";
         else if (!/^\d+$/.test(value)) error = "Only numbers allowed";
         else if (value.length !== 10) error = "Must be exactly 10 digits";
         break;
-
       default:
         break;
     }
     return error;
   };
 
-  // Handles input change and validation
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
     setErrors({ ...errors, [id]: validateField(id, value) });
   };
 
-  // Handles form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     let newErrors = {};
@@ -74,8 +71,6 @@ function SignupForm() {
     if (Object.values(newErrors).every((err) => err === "")) {
       console.log("Form submitted successfully:", formData);
       setErrors({});
-
-      // Smoothly scroll to the top of the form
       formRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -83,34 +78,38 @@ function SignupForm() {
   return (
     <motion.div
       ref={formRef}
-      className="max-w-6xl w-full mx-auto rounded-lg p-6 shadow-lg bg-white"
+      className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-4xl mx-auto p-8 sm:p-10 md:p-12 rounded-lg shadow-lg bg-white"
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
     >
-      <h2 className="font-bold text-xl text-gray-800">Welcome to Ecovision</h2>
-      <p className="text-gray-600 text-sm mt-2">Register now to access exclusive features.</p>
+      <h2 className="font-bold text-3xl sm:text-4xl text-gray-800 text-center my-6">
+        Get In Touch With Us
+      </h2>
 
-      <form className="my-6" onSubmit={handleSubmit}>
-        <LabelInputContainer
-          label="First Name"
-          id="firstname"
-          placeholder="John"
-          type="text"
-          required
-          value={formData.firstname}
-          onChange={handleChange}
-          error={errors.firstname}
-        />
-        <LabelInputContainer
-          label="Last Name"
-          id="lastname"
-          placeholder="Doe"
-          type="text"
-          required
-          value={formData.lastname}
-          onChange={handleChange}
-          error={errors.lastname}
-        />
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <LabelInputContainer
+            label="First Name"
+            id="firstname"
+            placeholder="John"
+            type="text"
+            required
+            value={formData.firstname}
+            onChange={handleChange}
+            error={errors.firstname}
+          />
+          <LabelInputContainer
+            label="Last Name"
+            id="lastname"
+            placeholder="Doe"
+            type="text"
+            required
+            value={formData.lastname}
+            onChange={handleChange}
+            error={errors.lastname}
+          />
+        </div>
+
         <LabelInputContainer
           label="Email Address"
           id="email"
@@ -132,7 +131,6 @@ function SignupForm() {
           error={errors.phone}
         />
 
-        {/* Message Box (Optional) */}
         <LabelInputContainer
           label="Message"
           id="message"
@@ -143,7 +141,7 @@ function SignupForm() {
         />
 
         <button
-          className="w-[10vw] bg-gradient-to-br from-gray-800 to-gray-600 text-white rounded-md h-10 font-medium shadow-md hover:opacity-80 transition relative left-[17vw] py-6"
+          className="w-full sm:w-auto px-8 py-3 bg-gray-800 text-white rounded-md font-medium shadow-md hover:opacity-80 transition mx-auto block"
           type="submit"
         >
           Submit
@@ -156,9 +154,18 @@ function SignupForm() {
 }
 
 // Reusable input component with error handling
-const LabelInputContainer = ({ label, id, placeholder, type, required, value, onChange, error }) => {
+const LabelInputContainer = ({
+  label,
+  id,
+  placeholder,
+  type,
+  required,
+  value,
+  onChange,
+  error,
+}) => {
   return (
-    <div className="flex flex-col space-y-1 w-full mb-4">
+    <div className="flex flex-col space-y-1 w-full">
       <label htmlFor={id} className="text-sm font-semibold text-gray-700">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
@@ -166,8 +173,10 @@ const LabelInputContainer = ({ label, id, placeholder, type, required, value, on
         <textarea
           id={id}
           placeholder={placeholder}
-          className={`w-full p-2 border rounded-md focus:ring-2 outline-none ${
-            error ? "border-red-500 ring-red-300" : "border-black focus:ring-gray-500"
+          className={`w-full p-3 border rounded-md focus:ring-2 outline-none ${
+            error
+              ? "border-red-500 ring-red-300"
+              : "border-gray-400 focus:ring-gray-500"
           }`}
           value={value}
           onChange={onChange}
@@ -177,8 +186,10 @@ const LabelInputContainer = ({ label, id, placeholder, type, required, value, on
           id={id}
           placeholder={placeholder}
           type={type}
-          className={`w-full p-2 border rounded-md focus:ring-2 outline-none ${
-            error ? "border-red-500 ring-red-300" : "border-black focus:ring-gray-500"
+          className={`w-full p-3 border rounded-md focus:ring-2 outline-none ${
+            error
+              ? "border-red-500 ring-red-300"
+              : "border-gray-400 focus:ring-gray-500"
           }`}
           value={value}
           onChange={onChange}

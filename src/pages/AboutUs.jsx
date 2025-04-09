@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { animateScroll as scroll } from "react-scroll";
 import ProfileCard from "../components/Cards/ProfileCard.jsx";
 import ServiceCard from "../components/Cards/ServiceCard.jsx";
 import Person1 from "../assets/Person1.jpg";
@@ -95,4 +94,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUs; 
