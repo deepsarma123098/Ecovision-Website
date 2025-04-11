@@ -54,7 +54,7 @@ function SolarConnections() {
       bgImage={lightImg2}
       bgImageAlt="Solar Img"
       strength={800}
-      className="h-full w-full mt-[2vw]"
+      className="h-[70vw] w-full"
       renderLayer={percentage => (
         <div
           style={{
@@ -73,21 +73,21 @@ function SolarConnections() {
     >
       <div className="relative z-10">
         {/* First Row: Solar Connection Types */}
-        <div className="mt-[6vw] flex flex-wrap justify-center gap-6 md:gap-12 px-4">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-12 px-4">
           <Card title="On Grid Connection" imageSrc={gridTieImg} />
           <Card title="Off Grid Connection" imageSrc={offGridImg} />
           <Card title="Hybrid Connection" imageSrc={hybridImg} />
         </div>
 
         {/* Second Row: Solar System Details */}
-        <div className="mt-12 px-4 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="relative top-[4vw] left-[2vw] px-4 md:px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {solarSystems.map((system, index) => (
             <GridCard key={index} title={system.title} text={system.description + system.expandedText} />
           ))}
         </div>
 
         {/* Tables Section */}
-        <div className="min-h-[53vh] mt-[8vw] flex flex-col lg:flex-row items-center justify-center gap-6 p-4 lg:p-6">
+        <div className="min-h-[60vh] mt-[8vw] flex flex-col lg:flex-row items-center justify-center gap-6 p-4 lg:p-6">
           <Table title="Subsidy Details" columns={subsidyColumns} data={subsidyData} />
           <Table
             title="Suitable Rooftop Solar Plant Capacity for Households"

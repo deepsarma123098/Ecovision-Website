@@ -74,7 +74,14 @@ import { TypewriterEffect } from "../Typewriter/Typewriter.jsx";
 
 function ParallaxSection() {
   return (
-    <Parallax bgImage={panelImg} bgImageAlt="Solar Img" strength={800} className='h-[200%] w-full'>
+
+    <div className="">
+ <Parallax 
+ bgImage={panelImg} 
+ bgImageAlt="Solar Img" 
+ strength={800}
+ className="h-[80vw]"
+ >
      {/* Typewriter Effect */}
      <TypewriterEffect words="Save big on your electricity bills up to 95% with Solar." />
 
@@ -108,6 +115,8 @@ function ParallaxSection() {
  
 </motion.div>
     </Parallax>
+    </div>
+   
   )
 }
 

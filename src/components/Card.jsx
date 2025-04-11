@@ -26,10 +26,10 @@ function Card({ title, imageSrc, text }) {
 
   return (
     <div
-      className="relative bg-gray-50 group dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] 
+      className="relative top-[2vw] bg-gray-50 group dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] 
       dark:bg-black dark:border-white/[0.2] border border-black/[0.1] 
       w-full sm:w-[80%] md:w-[60%] lg:w-[40%] xl:w-[30%] 
-      p-4 rounded-xl transition-transform transform duration-300"
+      p-4 rounded-xl transition-transform transform duration-300 min-h-[20vw]"
       style={{
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${isHovered ? 1.08 : 1})`,
         transition: "transform 0.2s ease-out",

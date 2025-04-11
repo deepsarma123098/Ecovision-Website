@@ -19,7 +19,7 @@ function SolarInfo() {
   })
 
   return (
-    <div ref={solarInfo} className="mt-4 px-4 py-6 sm:px-8 lg:px-16 w-[90%] h-[32vw] max-w-8xl max-h-4xl mx-auto rounded-xl bg-cover bg-center " style= {{backgroundImage:`url(${sunBackgroundImg})`}}>
+    <div ref={solarInfo} className="m-4 px-4 py-6 sm:px-8 lg:px-16 w-[90%] h-[32vw] max-w-8xl max-h-4xl mx-auto rounded-xl bg-cover bg-center relative left-[4.7vw] top-[2.3vw]" style= {{backgroundImage:`url(${sunBackgroundImg})`}}>
       {/* <h1 className=" text-start text-white">What is Solar?</h1> */}
       <h1 className="mt-4 font-bold text-medium sm:text-[20vw] md:text-2xl lg:text-3xl text-justify leading-relaxed text-white">
       SOLAR — <br /><br />

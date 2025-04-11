@@ -9,8 +9,8 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-white dark:bg-black shadow-md z-50">
-      <div className="flex justify-between items-center px-6 py-4 md:px-8">
+    <header className="fixed top-0 left-0 w-full bg-white dark:bg-[#7F5442] shadow-md z-50">
+      <div className="relative w-[96%] left-[2vw] flex justify-between items-center px-6 py-4 md:px-8 ">
         {/* Logo */}
         <div className="flex items-center space-x-3 text-black dark:text-white text-lg font-semibold">
           <img src={transparentLogoImg} alt="Ecovision Logo" className="h-20 w-auto object-contain" />
@@ -18,7 +18,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 text-lg font-medium text-neutral-700 dark:text-neutral-200">
+        <nav className="hidden gap-10 md:flex space-x-8 text-lg font-medium text-neutral-700 dark:text-neutral-200">
           <Link to="/" className="hover:text-black dark:hover:text-white transition">Home</Link>
           <Link to="/about" className="hover:text-black dark:hover:text-white transition">About Us</Link>
           <Link to="/products" className="hover:text-black dark:hover:text-white transition">Products</Link>
@@ -29,7 +29,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Button
             variant="outline"
-            className="flex items-center rounded-full px-6 py-2 border border-neutral-400 text-neutral-700 dark:text-neutral-200 
+            className="flex items-center rounded-full px-[4vw] py-2 border border-neutral-400 text-neutral-700 dark:text-neutral-200 
                        hover:scale-105 transition-transform duration-200
                        hover:bg-neutral-200 dark:hover:bg-neutral-700 dark:hover:text-white"
           >
