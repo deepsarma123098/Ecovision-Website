@@ -84,9 +84,9 @@ export default function ScrollCard() {
       {/*Home Section (Section 2)*/}
       <div ref={nextSectionRef} className="home text-center p-6 -mt-[3vw]">
         {/* Smooth Scroll to Sections */}
-        <ParallaxSection backgroundImage={panelImg} midgroundImage={panelImg} foregroundImage={panelImg}>
+        <ParallaxSection backgroundImage={panelImg} midgroundImage={panelImg} foregroundImage={panelImg}/>
          
-        </ParallaxSection>
+       
 
        
       </div>
